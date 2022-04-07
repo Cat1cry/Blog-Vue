@@ -1,32 +1,41 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+  <div>
+    <div v-if="$route.meta.headerAlive">
+      <HeaderVue></HeaderVue>
+    </div>
+    <BackTop></BackTop>
+
+    <div id="v-content" v-bind:style="{ minHeight: Height + 'px' }">
+      <router-view />
+    </div>
+    <div v-if="$route.meta.keepAlive">
+      <FooterVue></FooterVue>
+    </div>
   </div>
 </template>
 
+<script>
+import BackTop from './components/BackTop'
+import HeaderVue from './components/HeaderVue'
+import FooterVue from './components/FooterVue'
+export default {
+  components: { HeaderVue, FooterVue, BackTop },
+  data () {
+    return {
+      Height: 0
+    }
+  },
+  mounted () {
+    this.Height = document.documentElement.clientHeight - 100
+    window.onresize = () => { this.Height = document.documentElement.clientHeight - 100 }
+  }
+
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+* {
+  margin: 0;
+  padding: 0;
 }
 </style>

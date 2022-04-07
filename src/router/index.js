@@ -1,27 +1,110 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+// import HomeView from '../views/HomeView.vue'
+import IndexView from '../views/IndexView.vue'
+import WebView from '../views/WebView.vue'
+import NoteView from '../views/NoteView.vue'
+import ArticleView from '../views/ArticleView.vue'
+import adminLogin from '../views/admin/adminLogin.vue'
+import adminReg from '../views/admin/adminReg.vue'
+import adminArticle from '../views/admin/adminArticle.vue'
+import CreateArticle from '../views/admin/CreateArticle.vue'
+import ListArticle from '../views/admin/ListArticle.vue'
+import EditArticle from '../views/admin/EditArticle.vue'
+import MsgView from '../views/MsgView.vue'
+import adminMessage from '../views/admin/adminMessage.vue'
+import Info from '../views/InfoView.vue'
+Vue.use(VueRouter)
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+export default new VueRouter({
+  routes: [{
     path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
-
-const router = new VueRouter({
-  routes
+    name: 'index',
+    redirect: '/index'
+  }, {
+    path: '/index',
+    component: IndexView,
+    meta: {
+      headerAlive: false,
+      keepAlive: false
+    }
+  }, {
+    path: '/webposts',
+    name: 'webposts',
+    component: WebView,
+    meta: {
+      headerAlive: true,
+      keepAlive: true
+    }
+  }, {
+    path: '/message',
+    name: 'message',
+    component: MsgView,
+    meta: {
+      headerAlive: true,
+      keepAlive: true
+    }
+  }, {
+    path: '/noteposts',
+    name: 'noteposts',
+    component: NoteView,
+    meta: {
+      headerAlive: true,
+      keepAlive: true
+    }
+  }, {
+    path: '/webposts/:id',
+    component: ArticleView,
+    meta: {
+      headerAlive: true,
+      keepAlive: false
+    }
+  }, {
+    path: '/info',
+    name: 'info',
+    component: Info,
+    meta: {
+      headerAlive: true,
+      keepAlive: true
+    }
+  }, {
+    path: '/admin-login',
+    name: 'login',
+    component: adminLogin,
+    meta: {
+      keepAlive: false
+    }
+  }, {
+    path: '/admin-reg',
+    name: 'reg',
+    component: adminReg,
+    meta: {
+      keepAlive: false
+    }
+  }, {
+    path: '/admin-article',
+    component: adminArticle,
+    children: [{
+      path: '',
+      redirect: 'index'
+    }, {
+      path: 'create',
+      name: 'create-article',
+      component: CreateArticle
+    }, {
+      path: 'index',
+      name: 'list-article',
+      component: ListArticle
+    }, {
+      path: ':id/edit',
+      name: 'edit-article',
+      component: EditArticle
+    }, {
+      path: 'message',
+      name: 'message',
+      component: adminMessage
+    }]
+  }]
 })
-
-export default router

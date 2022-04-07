@@ -1,24 +1,12 @@
-# blog_vue
+# Vue2博客系统
 
-## Project setup
-```
-npm install
-```
+## 使用技术栈 ： Vue2 + Element-Ui
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### 包含 文章分类、留言板、MarkDown编辑及解析等功能 包含文章管理后台
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### 使用前请使用``` npm install ``` 安装项目所需依赖
 
-### Lints and fixes files
-```
-npm run lint
-```
+### 后端文件在Blog-server仓库
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### 因为没有做权限管理，所以并不建议留注册页面
