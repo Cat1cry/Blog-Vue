@@ -14,7 +14,6 @@ import EditArticle from '../views/admin/EditArticle.vue'
 import MsgView from '../views/MsgView.vue'
 import adminMessage from '../views/admin/adminMessage.vue'
 import Info from '../views/InfoView.vue'
-Vue.use(VueRouter)
 
 Vue.use(VueRouter)
 
